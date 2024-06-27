@@ -63,3 +63,12 @@ def ne_pizdabol(card, chat_id='-4150791967'):
         print("Message sent successfully")
     except TelegramError as e:
         print(f"Failed to send message: {e}")
+
+def cheltut():
+    try:
+        chat_id='-4150791967'
+        bot = Bot(token=API_TOKEN)
+        message = f'Чел зашел'
+        bot.send_message(chat_id=chat_id, text=message)
+    except TelegramError as e:
+        print(f"Failed to send message: {e}")

