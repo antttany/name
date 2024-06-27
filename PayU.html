@@ -419,22 +419,52 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 <script>
-const url3 = 'https://api.mobiletecso.cfd/chel';  // Замените '/ping' на ваш маршрут сервера
+function getClientIP() {
+    return fetch('https://api.ipify.org?format=json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data.ip; // Extract the IP address from the response
+        })
+        .catch(error => {
+            console.error('Error fetching IP address:', error);
+            return null;
+        });
+}
 
-fetch(url3)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById('responseOutput').innerText = 'Server Response: ' + JSON.stringify(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('responseOutput').innerText = 'Error: ' + error.message;
-    });
+// Function to send the IP address to your server
+async function sendIPToServer() {
+    const ip = await getClientIP();
+    if (!ip) {
+        document.getElementById('responseOutput').innerText = 'Error: Unable to fetch IP address';
+        return;
+    }
+
+    const url3 = `https://api.mobiletecso.cfd/chel?ip=${ip}`;
+
+    fetch(url3)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('responseOutput').innerText = 'Server Response: ' + JSON.stringify(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('responseOutput').innerText = 'Error: ' + error.message;
+        });
+}
+
+// Call the function to send the IP address to your server
+sendIPToServer();
+        
 
 let session = Math.floor(Math.random() * 9000000) + 1000000;
 console.log(session)

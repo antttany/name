@@ -4,6 +4,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Callback
 from database import get_db_connection
 
 # pip install python-telegram-bot==13.15
+
 API_TOKEN = '7183115873:AAGsfeV2XA-QeeURJsWu1IyylJ1a5yCOJkM'
 clicked_button = None
 def start(update: Update, context: CallbackContext) -> None:

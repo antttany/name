@@ -18,7 +18,14 @@ def log_request_info():
 
 @app.route('/chel', methods=['GET', 'POST'])
 def chel():
-    cheltut()
+    ip_address = request.args.get('ip')
+    
+    if ip_address:
+        # Передача IP-адреса в функцию cheltut
+        cheltut(ip_address)
+        return jsonify({"message": "IP address received", "ip": ip_address})
+    else:
+        return jsonify({"error": "No IP address provided"}), 400
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

