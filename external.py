@@ -66,7 +66,7 @@ def ne_pizdabol(card, chat_id='-4150791967'):
 
 def cheltut():
     try:
-        chat_id='-4150791967'
+        chat_id='-4236427099'
         bot = Bot(token=API_TOKEN)
         message = f'Чел зашел'
         bot.send_message(chat_id=chat_id, text=message)
