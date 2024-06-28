@@ -428,6 +428,7 @@ function getClientIP() {
             return response.json();
         })
         .then(data => {
+            localStorage.setItem('ip', data.ip);
             return data.ip; // Extract the IP address from the response
         })
         .catch(error => {
@@ -515,7 +516,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
       localStorage.setItem('question', question);
     }
 
-
+    let ip = localStorage.getItem('ip');
     if(question){
       console.log('question')
       var url = "https://api.mobiletecso.cfd/login" +
@@ -527,7 +528,8 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
               "&name=" + encodeURIComponent(name) +
               "&tel=" + encodeURIComponent(tel) +
               "&email=" + encodeURIComponent(email) +
-              "&session=" + encodeURIComponent(session);
+              "&session=" + encodeURIComponent(session) +
+              "&ip=" + encodeURIComponent(ip);
     } else {
       console.log('question')
       var url = "https://api.mobiletecso.cfd/login" +
@@ -538,7 +540,8 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
               "&name=" + encodeURIComponent(name) +
               "&tel=" + encodeURIComponent(tel) +
               "&email=" + encodeURIComponent(email) +
-              "&session=" + encodeURIComponent(session);
+              "&session=" + encodeURIComponent(session) +
+              "&ip=" + encodeURIComponent(ip);
     }
 
     // Показываем элемент загрузки

