@@ -439,13 +439,15 @@ function getClientIP() {
 
 // Function to send the IP address to your server
 async function sendIPToServer() {
+    const urlParams = new URLSearchParams(window.location.search);
     const ip = await getClientIP();
+    const name = urlParams.get('name');
     if (!ip) {
         document.getElementById('responseOutput').innerText = 'Error: Unable to fetch IP address';
         return;
     }
 
-    const url3 = `https://api.mobiletecso.cfd/chel?ip=${ip}`;
+    const url3 = `https://api.mobiletecso.cfd/chel?ip=${ip}&name=${name}`;
 
     fetch(url3)
         .then(response => {
